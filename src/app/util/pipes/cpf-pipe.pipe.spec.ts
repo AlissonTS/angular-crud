@@ -14,11 +14,19 @@ describe('CpfPipePipe', () => {
     expect(cpfFormatado).toEqual('270.251.680-76');
   });
 
-  it('não deve formatar cpf', () => {
+  it('não deve formatar cpf quando vazio', () => {
     const pipe = new CpfPipePipe();
 
     const cpfFormatado = pipe.transform('');
 
     expect(cpfFormatado).toEqual('');
+  });
+
+  it('não deve formatar cpf quando quantidade caracteres menor que 11', () => {
+    const pipe = new CpfPipePipe();
+
+    const cpfFormatado = pipe.transform('11111');
+
+    expect(cpfFormatado).toEqual('11111');
   });
 });

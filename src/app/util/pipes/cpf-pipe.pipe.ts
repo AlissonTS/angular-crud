@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CpfPipePipe implements PipeTransform {
   transform(valor: string): string {
     if (valor.length < 11) {
-      return '';
+      return valor;
     }
 
     let valorFormatado = valor + '';
