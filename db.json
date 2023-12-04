@@ -1,0 +1,13 @@
+{
+  "clientes": [
+    {
+      "nomeCliente": "Cliente teste",
+      "cpf": "92740412096",
+      "dataNascimento": "1990-10-10T03:00:00.000Z",
+      "rendaMensal": 5000,
+      "email": "clienteteste@gmail.com",
+      "dataCadastro": "2023-10-10T03:00:00.000Z",
+      "id": 1
+    }
+  ]
+}

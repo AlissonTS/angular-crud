@@ -1,0 +1,189 @@
+<main>
+  <h1>Cadastrar Cliente</h1>
+
+  <p-button label="Voltar" [routerLink]="['/lista-cliente']" [link]="true">
+  </p-button>
+
+  <section id="cliente-form">
+    <form [formGroup]="clienteForm" (ngSubmit)="onSubmitCliente()">
+      <div>
+        <label for="nomecliente">Nome Cliente </label>
+        <input
+          id="nomecliente"
+          pInputText
+          aria-labelledby="nomecliente"
+          formControlName="nomeCliente"
+          class="p-inputtext-lg" />
+
+        <div
+          *ngIf="
+            clienteForm.get('nomeCliente')?.invalid &&
+            (clienteForm.get('nomeCliente')?.dirty ||
+              clienteForm.get('nomeCliente')?.touched)
+          ">
+          <span
+            *ngIf="clienteForm.get('nomeCliente')?.hasError('required')"
+            class="error-input"
+            >Nome do cliente é obrigatório.</span
+          >
+          <span
+            *ngIf="clienteForm.get('nomeCliente')?.hasError('nomeInvalido')"
+            class="error-input"
+            >{{
+              clienteForm.get('nomeCliente')?.getError('nomeInvalido')
+            }}</span
+          >
+        </div>
+      </div>
+
+      <div>
+        <label for="cpf">CPF </label>
+        <p-inputMask
+          id="cpf"
+          aria-labelledby="cpf"
+          mask="999.999.999-99"
+          [unmask]="true"
+          formControlName="cpf"
+          class="p-inputtext-lg"></p-inputMask>
+
+        <div
+          *ngIf="
+            clienteForm.get('cpf')?.invalid &&
+            (clienteForm.get('cpf')?.dirty || clienteForm.get('cpf')?.touched)
+          ">
+          <span
+            *ngIf="clienteForm.get('cpf')?.hasError('required')"
+            class="error-input"
+            >CPF é obrigatório.</span
+          >
+
+          <span
+            *ngIf="clienteForm.get('cpf')?.hasError('cpfInvalido')"
+            class="error-input"
+            >CPF inválido.</span
+          >
+        </div>
+      </div>
+
+      <div>
+        <label for="datanascimento">Data Nascimento </label>
+        <p-calendar
+          id="datanascimento"
+          aria-labelledby="datanascimento"
+          formControlName="dataNascimento"
+          [showIcon]="true"
+          dateFormat="dd/mm/yy"
+          class="p-inputtext-lg"></p-calendar>
+
+        <div
+          *ngIf="
+            clienteForm.get('dataNascimento')?.invalid &&
+            (clienteForm.get('dataNascimento')?.dirty ||
+              clienteForm.get('dataNascimento')?.touched)
+          ">
+          <span
+            *ngIf="clienteForm.get('dataNascimento')?.hasError('required')"
+            class="error-input"
+            >Data de nascimento é obrigatória.</span
+          >
+
+          <span
+            *ngIf="clienteForm.get('dataNascimento')?.hasError('idadeInvalida')"
+            class="error-input"
+            >Cliente deve possuir mais de 18 anos e menos de 60.</span
+          >
+        </div>
+      </div>
+
+      <div>
+        <label for="rendamensal">Renda Mensal </label>
+        <p-inputNumber
+          id="rendamensal"
+          aria-labelledby="rendamensal"
+          formControlName="rendaMensal"
+          mode="currency"
+          currency="BRL"
+          locale="pt-BR"
+          class="p-inputtext-lg">
+        </p-inputNumber>
+
+        <div
+          *ngIf="
+            clienteForm.get('rendaMensal')?.invalid &&
+            (clienteForm.get('rendaMensal')?.dirty ||
+              clienteForm.get('rendaMensal')?.touched)
+          ">
+          <span
+            *ngIf="clienteForm.get('rendaMensal')?.hasError('required')"
+            class="error-input"
+            >Renda mensal é obrigatória.</span
+          >
+
+          <span
+            *ngIf="clienteForm.get('rendaMensal')?.hasError('min')"
+            class="error-input"
+            >Renda mensal deve ser maior que R$0.</span
+          >
+        </div>
+      </div>
+
+      <div>
+        <label for="email">Email </label>
+        <input
+          id="email"
+          type="email"
+          pInputText
+          aria-labelledby="email"
+          formControlName="email"
+          class="p-inputtext-lg" />
+
+        <div
+          *ngIf="
+            clienteForm.get('email')?.invalid &&
+            (clienteForm.get('email')?.dirty ||
+              clienteForm.get('email')?.touched)
+          ">
+          <span
+            *ngIf="clienteForm.get('email')?.hasError('required')"
+            class="error-input"
+            >Email é obrigatório.</span
+          >
+
+          <span
+            *ngIf="clienteForm.get('email')?.hasError('email')"
+            class="error-input"
+            >Email inválido.</span
+          >
+        </div>
+      </div>
+
+      <div>
+        <label for="datacadastro">Data Cadastro </label>
+        <p-calendar
+          id="datacadastro"
+          aria-labelledby="datacadastro"
+          formControlName="dataCadastro"
+          [showIcon]="true"
+          dateFormat="dd/mm/yy"
+          class="p-inputtext-lg"></p-calendar>
+
+        <div
+          *ngIf="
+            clienteForm.get('dataCadastro')?.invalid &&
+            (clienteForm.get('dataCadastro')?.dirty ||
+              clienteForm.get('dataCadastro')?.touched)
+          ">
+          <span
+            *ngIf="clienteForm.get('dataCadastro')?.hasError('required')"
+            class="error-input"
+            >Data de cadastro é obrigatória.</span
+          >
+        </div>
+      </div>
+
+      <div>
+        <p-button label="Salvar" severity="success" type="submit"></p-button>
+      </div>
+    </form>
+  </section>
+</main>
